@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html ng-app = "docModule">
+<head>
+<script src="Angular.min.js"> </script>
+<script src="scripts.js"> </script>
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <link href="style2.css" rel="stylesheet">
+<title>Doctor Data Tracking System</title>
+</head>
+<body>
+<h1 style="text-decoration: underline;"> Doctor Data Tracking System  Model</h1>
+<div ng-controller="docController">
+	Custom Search : <input type="text" placeholder="Search using any input" style="margin:5px;" ng-model="searchText" /> <br/>
+	Search by Last Name : <input type="text" placeholder="Search by last name" style="margin:5px;" ng-model="searchTextl.lastName" /> <br/>
+	Search by First Name : <input type="text" placeholder="Search by first name" style="margin:5px;" ng-model="searchTextf.firstName" /> <br/>
+	
+	Sort By : <select placeholder="Select" style="margin:5px;" ng-model="sortColumn"> 
+		<option value="firstName" > First Name ASC </option>
+		<option value="-firstName"> First Name DESC </option>
+		<option value="lastName"> Last Name ASC </option>
+		<option value="-lastName"> Last Name DESC </option>
+		<option value="age"> Age ASC</option>
+		<option value="-age"> Age DESC</option>
+		<option value="payperhour"> Pay Per Hour ASC </option>
+		<option value="-payperhour"> Pay Per Hour DESC </option>
+	</select>
+	<div class="1" ng-repeat="doctor in doctor | orderBy: sortColumn | filter: searchText |  filter: searchTextl | filter: searchTextf">
+	
+  <div class = "full">
+  <h2 style="padding-left:30px;">{{doctor.firstName}} {{doctor.lastName}}</h2>
+  <div>
+	<img ng-src="{{doctor.pic}}"
+		alt="{{doctor.firstName}}" style="height:100px; width:150px;padding-left:30px;" />
+	</div>
+    
+    <div class="container-fluid">
+     <div class="col-sm-3" >
+    <div class="bio">
+    <div style="font-size:150%;text-decoration: underline;"><strong>Biography</strong></div>
+	<div>
+	First Name : {{doctor.firstName}}
+	</div>
+	<div>
+	Last Name : {{doctor.lastName}}
+	</div>
+	<div>
+	Gender : {{doctor.gender}}
+	</div>
+	<div>
+	Field : {{doctor.field}}
+	</div>
+	<div>
+	Qualification : {{doctor.qualification}}
+	</div>
+	<div>
+	Years Of Experience : {{doctor.yearsOfExperience}}
+	</div>
+	<div>
+	Age : {{doctor.age}}
+	</div>
+	<div>
+	Phone Number : {{doctor.phoneNumber}}
+	</div>
+	<div>
+	Email I.d. : {{doctor.email}}
+	</div> 
+	</div>
+	</div>
+	
+	 <div class="col-sm-4">
+	<div class="work">
+	 <div style="font-size:150%;text-decoration: underline;"><strong>Working Hours & Days</strong></div>
+	<div>
+	Working Hours : {{doctor.workinghours}}
+	</div>
+	<div>
+	Working Days : {{doctor.workingdays}}
+	</div>
+	</div>
+	</div>
+	
+	 <div class="col-sm-3" >
+	<div class="pay">
+	 <div style="font-size:150%;text-decoration: underline;"><strong>Pay</strong></div>
+	<div>
+	Pay Per Hour : {{doctor.payperhour |  currency:"USD$"}}
+	</div>
+	<div>
+	Other Allowance Per Month : {{doctor.otherallowancepermonth |  currency:"USD$"}}
+	</div>
+	</div>
+	</div>
+	
+    
+	</div>
+  	
+	</div>
+</div>
+
+
+
+
+ </body>
+</html>
